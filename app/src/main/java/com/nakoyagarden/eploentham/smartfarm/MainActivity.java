@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //sf.siteId = "1";
-                String url="http://58.8.70.62:8080/smartfarm/testphp1.php";
+                String url="http://58.8.70.62:8080/cgi-bin/testpython.py?devi1=Sensor1";
                 StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                         .detectNetwork() // or .detectAll() for all detectable problems
                         .penaltyDialog()  //show a dialog
-                                //.permitNetwork() //permit Network access
+                                .permitNetwork() //permit Network access
                         .build());
                 //String url="http://www.google.com";
                 //Intent s1 = new Intent(view.getContext(), MainView.class);
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                         instream.close();
                         tv.setText(result);
                     }
-
 
                 } catch (Exception e) {
                     Log.e("Praeda", e.getMessage());

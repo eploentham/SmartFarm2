@@ -1,5 +1,6 @@
 package com.nakoyagarden.eploentham.smartfarm;
 
+import android.graphics.Color;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class WaterActivity extends AppCompatActivity {
     //private Spinner spinner1;
     private Switch sw1, sw2, sw3;
     private SeekBar sb1;
-    private TextView tv1,tv2;
+    private TextView tv1,tv2,tv3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +40,10 @@ public class WaterActivity extends AppCompatActivity {
         sw1 = (Switch)findViewById(R.id.switch1);
         sw2 = (Switch)findViewById(R.id.switch2);
         sw3 = (Switch)findViewById(R.id.switch3);
-        sb1 = (SeekBar)findViewById(R.id.seekBar);
+        //sb1 = (SeekBar)findViewById(R.id.seekBar);
         tv1 = (TextView) findViewById(R.id.textView2);
         tv2 = (TextView) findViewById(R.id.textView3);
+        tv3 = (TextView) findViewById(R.id.textView4);
         //List<String> list = new ArrayList<String>();
         //list.add("Android");
         //list.add("Java");
@@ -54,10 +56,11 @@ public class WaterActivity extends AppCompatActivity {
         sw1.setText("ปั้มน้ำแปลงผักสลัด");
         sw2.setText("ปั้มพ่นหมอกแปลงผักสลัด");
         sw3.setText("ปั้มถังพ่นยา");
-        sb1.setMax(80);
+        //sb1.setMax(80);
         tv1.setText("Tank1");
         tv2.setText("Tank2");
-
+        tv3.setBackgroundColor(Color.RED);
+        tv3.setTextColor(Color.RED);
         String url="http://58.8.70.62:8080/cgi-bin/readgpioall.py";
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectNetwork() // or .detectAll() for all detectable problems
@@ -109,6 +112,29 @@ public class WaterActivity extends AppCompatActivity {
                         sw1.setChecked(true);
                     }else{
                         sw1.setChecked(false);
+                    }
+                    if(!aa[4].equals("")){
+                        String aaa="";
+                        int x=80,y=100,z=0;
+                        z=Integer.parseInt(aa[4]);
+                        z=Integer.parseInt("20");
+                        double zz = (y/x)*z;
+                        //double zz = (y/x);
+                        for(int i=0;i<(zz*2);i++){
+                            aaa+=".";
+                        }
+                        double zzz=0;
+                        zzz = 100-zz;
+                        if(zzz>=80){
+                            tv3.setBackgroundColor(Color.GREEN);
+                            tv3.setTextColor(Color.GREEN);
+                        }else if(zzz<=40){
+                            tv3.setBackgroundColor(Color.RED);
+                            tv3.setTextColor(Color.RED);
+                        }
+                        tv3.setText(aaa);
+                        tv1.setText(aa[4]);
+                        tv2.setText(String.valueOf(zz));
                     }
                 }
 

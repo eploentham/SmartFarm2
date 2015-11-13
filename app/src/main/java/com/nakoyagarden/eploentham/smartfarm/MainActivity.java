@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                         .detectNetwork() // or .detectAll() for all detectable problems
                         .penaltyDialog()  //show a dialog
-                                .permitNetwork() //permit Network access
+                        .permitNetwork() //permit Network access
                         .build());
                 //String url="http://www.google.com";
                 //Intent s1 = new Intent(view.getContext(), MainView.class);

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
@@ -32,6 +33,10 @@ public class WaterActivity extends AppCompatActivity {
     private Switch sw1, sw2, sw3;
     private SeekBar sb1;
     private TextView tv1,tv2,tv3;
+    HttpClient httpclient = new DefaultHttpClient();
+    HttpResponse response;
+    HttpGet httpget;
+    String url="http://58.8.70.62:8080/cgi-bin/readgpioall.py";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,18 +66,60 @@ public class WaterActivity extends AppCompatActivity {
         tv2.setText("Tank2");
         tv3.setBackgroundColor(Color.RED);
         tv3.setTextColor(Color.RED);
-        String url="http://58.8.70.62:8080/cgi-bin/readgpioall.py";
+
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectNetwork() // or .detectAll() for all detectable problems
                 .penaltyDialog()  //show a dialog
                 .permitNetwork() //permit Network access
                 .build());
+        sw1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv1.setText("aaaaaaaaaa");
+            }
+        });
+        sw2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chk="";
+                if(sw2.isChecked()){
+                    chk="1";
+                }else{
+                    chk="0";
+                }
+                url="http://58.8.70.62:8080/cgi-bin/opengpio.py?devi1=48&status="+chk;
+                httpget = new HttpGet(url);
+                try{
+                    response = httpclient.execute(httpget);
+                    int status = response.getStatusLine().getStatusCode();
+                    Log.i("Praeda", response.getStatusLine().toString());
+                    HttpEntity entity = response.getEntity();
+                    if (entity != null) {
+                        InputStream instream = entity.getContent();
+                        String result= convertStreamToString(instream);
+                        instream.close();
+                        result = result.replace("\n","");
+                        result = result.replace("\n","");
+                        result = result.replace("\n","");
+                        result = result.trim();
+                        if(result.equals("ok")){
+                            sw2.setChecked(true);
+                        }else{
+                            sw2.setChecked(false);
+                        }
+
+                    }
+                }catch(Exception e){
+
+                }
+            }
+        });
         //String url="http://www.google.com";
         //Intent s1 = new Intent(view.getContext(), MainView.class);
         //startActivityForResult(s1, 0);
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpGet httpget = new HttpGet(url);
-        HttpResponse response;
+
+        httpget = new HttpGet(url);
+
         try {
             response = httpclient.execute(httpget);
             int status = response.getStatusLine().getStatusCode();

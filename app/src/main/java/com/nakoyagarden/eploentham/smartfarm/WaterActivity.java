@@ -87,7 +87,8 @@ public class WaterActivity extends AppCompatActivity {
                 }else{
                     chk="0";
                 }
-                url="http://58.8.70.62:8080/cgi-bin/opengpio.py?devi1=48&status="+chk;
+
+                url="http://58.8.70.62:8080/cgi-bin/opengpio.py?devi1=30&status="+chk;
                 httpget = new HttpGet(url);
                 try{
                     response = httpclient.execute(httpget);

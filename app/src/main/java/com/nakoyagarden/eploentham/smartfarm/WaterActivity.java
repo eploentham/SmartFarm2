@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -33,6 +34,8 @@ public class WaterActivity extends AppCompatActivity {
     private Switch sw1, sw2, sw3;
     private SeekBar sb1;
     private TextView tv1,tv2,tv3;
+    ImageView iv;
+
     HttpClient httpclient = new DefaultHttpClient();
     HttpResponse response;
     HttpGet httpget;
@@ -49,6 +52,7 @@ public class WaterActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.textView2);
         tv2 = (TextView) findViewById(R.id.textView3);
         tv3 = (TextView) findViewById(R.id.textView4);
+        iv = (ImageView)findViewById(R.id.imageView);
         //List<String> list = new ArrayList<String>();
         //list.add("Android");
         //list.add("Java");
@@ -66,7 +70,7 @@ public class WaterActivity extends AppCompatActivity {
         tv2.setText("Tank2");
         tv3.setBackgroundColor(Color.RED);
         tv3.setTextColor(Color.RED);
-
+        iv.setImageResource(R.mipmap.ic_tank6);
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectNetwork() // or .detectAll() for all detectable problems
                 .penaltyDialog()  //show a dialog
@@ -174,11 +178,23 @@ public class WaterActivity extends AppCompatActivity {
                         double zzz=0;
                         zzz = 100-zz;
                         if(zzz>=80){
-                            tv3.setBackgroundColor(Color.GREEN);
-                            tv3.setTextColor(Color.GREEN);
-                        }else if(zzz<=40){
-                            tv3.setBackgroundColor(Color.RED);
-                            tv3.setTextColor(Color.RED);
+                            //tv3.setBackgroundColor(Color.GREEN);
+                            //tv3.setTextColor(Color.GREEN);
+                            iv.setImageResource(R.mipmap.ic_tank6);
+                        }else if(zzz<=70) {
+                            iv.setImageResource(R.mipmap.ic_tank5);
+                        }else if(zzz<=60) {
+                            iv.setImageResource(R.mipmap.ic_tank4);
+                        }else if(zzz<=50){
+                            //tv3.setBackgroundColor(Color.RED);
+                            //tv3.setTextColor(Color.RED);
+                            iv.setImageResource(R.mipmap.ic_tank3);
+                        }else if(zzz<=40) {
+                            iv.setImageResource(R.mipmap.ic_tank2);
+                        }else if(zzz<=30) {
+                            iv.setImageResource(R.mipmap.ic_tank1);
+                        }else if(zzz<=20) {
+                            iv.setImageResource(R.mipmap.ic_tank0);
                         }
                         tv3.setText(aaa);
                         tv1.setText(aa[4]);

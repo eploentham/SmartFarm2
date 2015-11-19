@@ -31,10 +31,11 @@ import java.util.List;
 
 public class WaterActivity extends AppCompatActivity {
     //private Spinner spinner1;
-    private Switch sw1, sw2, sw3;
+    //private HorizontalGridView horizontalGridView;
+    private Switch sw1, sw2, sw3, sw4;
     private SeekBar sb1;
-    private TextView tv1,tv2,tv3;
-    ImageView iv;
+    private TextView tv1,tv2, tv222, tv221,tv332, tv442, tv552, tv662;
+    ImageView iv,iv22,iv33,iv44,iv55,iv66;
 
     HttpClient httpclient = new DefaultHttpClient();
     HttpResponse response;
@@ -48,11 +49,21 @@ public class WaterActivity extends AppCompatActivity {
         sw1 = (Switch)findViewById(R.id.switch1);
         sw2 = (Switch)findViewById(R.id.switch2);
         sw3 = (Switch)findViewById(R.id.switch3);
+        sw4 = (Switch)findViewById(R.id.switch4);
         //sb1 = (SeekBar)findViewById(R.id.seekBar);
-        tv1 = (TextView) findViewById(R.id.textView2);
-        tv2 = (TextView) findViewById(R.id.textView3);
-        tv3 = (TextView) findViewById(R.id.textView4);
+        tv1 = (TextView) findViewById(R.id.textView3);
+        tv2 = (TextView) findViewById(R.id.textView2);
+        tv222 = (TextView) findViewById(R.id.textView222);
+        tv332 = (TextView) findViewById(R.id.textView332);
+        tv442 = (TextView) findViewById(R.id.textView442);
+        tv552 = (TextView) findViewById(R.id.textView552);
+        tv662 = (TextView) findViewById(R.id.textView662);
         iv = (ImageView)findViewById(R.id.imageView);
+        iv22 = (ImageView)findViewById(R.id.imageView22);
+        iv33 = (ImageView)findViewById(R.id.imageView33);
+        iv44 = (ImageView)findViewById(R.id.imageView44);
+        iv55 = (ImageView)findViewById(R.id.imageView55);
+        iv66 = (ImageView)findViewById(R.id.imageView66);
         //List<String> list = new ArrayList<String>();
         //list.add("Android");
         //list.add("Java");
@@ -62,15 +73,45 @@ public class WaterActivity extends AppCompatActivity {
         //ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,list);
         //dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //spinner1.setAdapter(dataAdapter);
-        sw1.setText("ปั้มน้ำแปลงผักสลัด");
-        sw2.setText("ปั้มพ่นหมอกแปลงผักสลัด");
-        sw3.setText("ปั้มถังพ่นยา");
+        sw1.setText("ปั้มน้ำแปลงผักสลัด ");
+        sw2.setText("ปั้มพ่นหมอกแปลงผักสลัด ");
+        sw3.setText("ปั้มถังพ่นยา ");
+        sw4.setText("เปิดน้ำเข้าถัง ");
         //sb1.setMax(80);
-        tv1.setText("Tank1");
+        tv1.setText("ถังน้ำพ่นหมอกแปลงผักสลัด");
         tv2.setText("Tank2");
-        tv3.setBackgroundColor(Color.RED);
-        tv3.setTextColor(Color.RED);
+        tv222.setText("ถังน้ำประปา");
+        tv332.setText("ถังน้ำแปลงผักสลัด1");
+        tv442.setText("ถังน้ำแปลงผักสลัด2");
+        tv552.setText("ถังน้ำแปลงเมล่อน1");
+        tv662.setText("ถังน้ำแปลงเมล่อน2");
+        tv222.setTextColor(Color.BLACK);
+        tv332.setTextColor(Color.BLACK);
+        tv442.setTextColor(Color.BLACK);
+        tv552.setTextColor(Color.BLACK);
+        tv662.setTextColor(Color.BLACK);
+        //tv3.setTextColor(Color.RED);
+        tv1.setTextColor(Color.BLACK);
+        tv2.setTextColor(Color.BLACK);
+        tv1.setTextSize(18);
+        tv2.setTextSize(18);
+        tv222.setTextSize(18);
+        tv332.setTextSize(18);
+        tv442.setTextSize(18);
+        tv552.setTextSize(18);
+        tv662.setTextSize(18);
+        tv222.setTextSize(18);
+        sw1.setTextSize(18);
+        sw2.setTextSize(18);
+        sw3.setTextSize(18);
+        sw4.setTextSize(18);
+        //tv3.setVisibility(1);
         iv.setImageResource(R.mipmap.ic_tank6);
+        iv22.setImageResource(R.mipmap.ic_tank6);
+        iv33.setImageResource(R.mipmap.ic_tank6);
+        iv44.setImageResource(R.mipmap.ic_tank6);
+        iv55.setImageResource(R.mipmap.ic_tank6);
+        iv66.setImageResource(R.mipmap.ic_tank6);
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                 .detectNetwork() // or .detectAll() for all detectable problems
                 .penaltyDialog()  //show a dialog
@@ -79,7 +120,7 @@ public class WaterActivity extends AppCompatActivity {
         sw1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv1.setText("aaaaaaaaaa");
+                //tv1.setText("aaaaaaaaaa");
             }
         });
         sw2.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +158,12 @@ public class WaterActivity extends AppCompatActivity {
                 }catch(Exception e){
 
                 }
+            }
+        });
+        sw4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
         //String url="http://www.google.com";
@@ -169,12 +216,12 @@ public class WaterActivity extends AppCompatActivity {
                         String aaa="";
                         int x=80,y=100,z=0;
                         z=Integer.parseInt(aa[4]);
-                        z=Integer.parseInt("20");
+                        //z=Integer.parseInt("20");
                         double zz = (y/x)*z;
                         //double zz = (y/x);
-                        for(int i=0;i<(zz*2);i++){
-                            aaa+=".";
-                        }
+                        //for(int i=0;i<(zz*2);i++){
+                        //    aaa+=".";
+                        //}
                         double zzz=0;
                         zzz = 100-zz;
                         if(zzz>=80){
@@ -184,7 +231,7 @@ public class WaterActivity extends AppCompatActivity {
                         }else if(zzz<=70) {
                             iv.setImageResource(R.mipmap.ic_tank5);
                         }else if(zzz<=60) {
-                            iv.setImageResource(R.mipmap.ic_tank4);
+                            iv.setImageResource(R.mipmap.ic_tank44);
                         }else if(zzz<=50){
                             //tv3.setBackgroundColor(Color.RED);
                             //tv3.setTextColor(Color.RED);
@@ -196,9 +243,9 @@ public class WaterActivity extends AppCompatActivity {
                         }else if(zzz<=20) {
                             iv.setImageResource(R.mipmap.ic_tank0);
                         }
-                        tv3.setText(aaa);
-                        tv1.setText(aa[4]);
-                        tv2.setText(String.valueOf(zz));
+                        //tv3.setText(aaa);
+                        //tv1.setText(aa[4]);
+                        tv2.setText(String.valueOf(zzz)+"%");
                     }
                 }
 
